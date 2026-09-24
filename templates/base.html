@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ app_name }} · {% block title %}{% endblock %}</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='vendor/leaflet/leaflet.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo-dot">ITM</div>
+      <div>
+        <div class="brand-title">{{ app_name }}</div>
+        <div class="brand-sub">{{ app_subtitle }}</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Principal</div>
+      <a class="nav-item {{ 'active' if active=='dashboard' else '' }}" href="{{ url_for('views.dashboard') }}">
+        <i class="bi bi-grid-1x2-fill"></i> Dashboard
+      </a>
+      <a class="nav-item {{ 'active' if active=='mapa' else '' }}" href="{{ url_for('views.mapa') }}">
+        <i class="bi bi-geo-alt-fill"></i> Mapa de sedes
+      </a>
+
+      <div class="nav-section-label">Datos académicos</div>
+      <a class="nav-item {{ 'active' if active=='estadisticas' else '' }}" href="{{ url_for('views.estadisticas') }}">
+        <i class="bi bi-bar-chart-fill"></i> Estadísticas
+      </a>
+      <a class="nav-item {{ 'active' if active=='comparador' else '' }}" href="{{ url_for('views.comparador') }}">
+        <i class="bi bi-arrow-left-right"></i> Comparador de sedes
+      </a>
+
+      <div class="nav-section-label">Datos demográficos</div>
+      <a class="nav-item {{ 'active' if active=='analitica' else '' }}" href="{{ url_for('views.analitica') }}">
+        <i class="bi bi-graph-up-arrow"></i> Analítica avanzada
+      </a>
+
+      <div class="nav-section-label">Reportes y datos</div>
+      <a class="nav-item {{ 'active' if active=='buscador' else '' }}" href="{{ url_for('views.buscador') }}">
+        <i class="bi bi-search"></i> Buscador
+      </a>
+      <a class="nav-item {{ 'active' if active=='reporte' else '' }}" href="{{ url_for('views.reporte') }}">
+        <i class="bi bi-file-earmark-bar-graph-fill"></i> Reporte ejecutivo
+      </a>
+      <a class="nav-item {{ 'active' if active=='anadir_datos' else '' }}" href="{{ url_for('views.anadir_datos') }}">
+        <i class="bi bi-database-add"></i> Añadir datos
+      </a>
+
+      <div class="nav-section-label">Sistema</div>
+      <a class="nav-item {{ 'active' if active=='configuracion' else '' }}" href="{{ url_for('views.configuracion') }}">
+        <i class="bi bi-gear-fill"></i> Configuración
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      Instituto Tecnológico Metropolitano (ITM)<br>
+      Periodo 2026-1 · Datos reales de matrícula
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <div class="topbar">
+      <div style="display:flex; align-items:center; gap:.8rem;">
+        <button class="sidebar-toggle" id="sidebarToggle"><i class="bi bi-list"></i></button>
+        <div>
+          <h1>{% block heading %}{% endblock %}</h1>
+          <p class="subtitle">{% block subheading %}{% endblock %}</p>
+        </div>
+      </div>
+      {% block topbar_actions %}{% endblock %}
+    </div>
+
+    {% block content %}{% endblock %}
+  </main>
+</div>
+
+<script src="{{ url_for('static', filename='vendor/chart.umd.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/leaflet/leaflet.js') }}"></script>
+<script>
+  window.PALETTE = {{ palette | tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

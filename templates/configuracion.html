@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Configuración{% endblock %}
+{% block heading %}Perfil y configuración{% endblock %}
+{% block subheading %}Preferencias de visualización de la interfaz{% endblock %}
+
+{% block content %}
+<div class="grid grid-2">
+  <div class="card">
+    <div class="card-title"><i class="bi bi-sliders"></i> Apariencia</div>
+
+    <div class="theme-switch-row">
+      <div>
+        <div style="font-weight:600; font-size:.9rem;">Modo oscuro</div>
+        <div class="section-note" style="margin:0;">Cambia el tema de toda la interfaz</div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="darkModeToggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="theme-switch-row" style="flex-direction:column; align-items:flex-start; gap:.6rem;">
+      <div>
+        <div style="font-weight:600; font-size:.9rem;">Color de acento</div>
+        <div class="section-note" style="margin:0;">Color primario de botones y gráficos</div>
+      </div>
+      <div class="swatch-row" id="swatchRow">
+        <div class="swatch" data-color="#36C9C6" style="background:#36C9C6;"></div>
+        <div class="swatch" data-color="#E76F51" style="background:#E76F51;"></div>
+        <div class="swatch" data-color="#9BC1BC" style="background:#9BC1BC;"></div>
+        <div class="swatch" data-color="#6C8EBF" style="background:#6C8EBF;"></div>
+        <div class="swatch" data-color="#B08BBB" style="background:#B08BBB;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="bi bi-info-circle-fill"></i> Acerca del sistema</div>
+    <div style="font-size:.87rem; line-height:1.9; color:var(--ink-soft);">
+      <div><strong style="color:var(--ink);">Proyecto:</strong> {{ app_name }}</div>
+      <div><strong style="color:var(--ink);">Periodo analizado:</strong> 2026-1</div>
+      <div><strong style="color:var(--ink);">Fuente de datos:</strong> Matriculados_20260820.csv</div>
+      <div><strong style="color:var(--ink);">Institución:</strong> Instituto Tecnológico Metropolitano (ITM)</div>
+      <div><strong style="color:var(--ink);">Stack:</strong> Python · Flask · SQLite · Chart.js · Leaflet</div>
+    </div>
+
+    <div class="card-title" style="margin-top:1.4rem;"><i class="bi bi-database-fill-gear"></i> Datos</div>
+    <p class="section-note" style="margin-bottom:.8rem;">
+      Si reemplazas el archivo CSV en <code>/data</code>, vuelve a construir la base de datos para reflejar los cambios.
+    </p>
+    <div style="display:flex; gap:.6rem; flex-wrap:wrap;">
+      <span class="chip"><i class="bi bi-terminal"></i> python database/init_db.py</span>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/configuracion.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Analítica avanzada{% endblock %}
+{% block heading %}Analítica avanzada{% endblock %}
+{% block subheading %}Lectura socioeconómica y geográfica de la matrícula — módulos de valor agregado{% endblock %}
+
+{% block content %}
+<div class="grid grid-2" style="margin-bottom:1.2rem;">
+  <div class="card">
+    <div class="card-title"><i class="bi bi-pie-chart-fill"></i> Tasa de virtualidad</div>
+    <p class="section-note" style="margin-top:-.4rem; margin-bottom:.8rem;">Participación de cada modalidad sobre el total de matriculados.</p>
+    <div id="virtualidadList"></div>
+  </div>
+  <div class="card">
+    <div class="card-title"><i class="bi bi-globe-americas"></i> Cobertura por municipio de nacimiento</div>
+    <div id="municipioList"></div>
+  </div>
+</div>
+
+<div class="grid grid-2" style="margin-bottom:1.2rem;">
+  <div class="card">
+    <div class="card-title"><i class="bi bi-layers-fill"></i> Distribución por estrato socioeconómico</div>
+    <canvas id="chartEstrato" height="230"></canvas>
+    <p class="section-note">El estrato 0 corresponde a registros sin dato disponible en la fuente.</p>
+  </div>
+  <div class="card">
+    <div class="card-title"><i class="bi bi-geo-fill"></i> Top 10 comunas / municipios de procedencia</div>
+    <canvas id="chartComuna" height="230"></canvas>
+  </div>
+</div>
+
+<div class="grid grid-2">
+  <div class="card">
+    <div class="card-title"><i class="bi bi-building-check"></i> Top 12 colegios/instituciones que más aportan estudiantes</div>
+    <canvas id="chartColegios" height="280"></canvas>
+    <p class="section-note">Identifica las instituciones educativas aliadas con mayor tasa de matrícula — útil para relaciones interinstitucionales y admisiones.</p>
+  </div>
+  <div style="display:flex; flex-direction:column; gap:1.2rem;">
+    <div class="card">
+      <div class="card-title"><i class="bi bi-bank2"></i> Procedencia: colegio público vs. privado</div>
+      <div id="tipoColegioList"></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><i class="bi bi-gender-trans"></i> Equidad de género por facultad</div>
+      <div id="equidadList" style="display:flex; flex-direction:column; gap:.7rem; margin-top:.3rem;"></div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/analitica.js') }}"></script>
+{% endblock %}

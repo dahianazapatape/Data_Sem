@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Reporte ejecutivo{% endblock %}
+{% block heading %}Reporte ejecutivo{% endblock %}
+{% block subheading %}Resumen listo para presentar, con hallazgos generados automáticamente{% endblock %}
+
+{% block topbar_actions %}
+<button class="btn btn-terra" id="pdfBtn"><i class="bi bi-file-earmark-pdf-fill"></i> Descargar PDF</button>
+{% endblock %}
+
+{% block content %}
+<div class="grid grid-kpis" id="reportKpis" style="margin-bottom:1.2rem;"></div>
+
+<div class="grid grid-2">
+  <div class="card">
+    <div class="card-title"><i class="bi bi-lightbulb-fill"></i> Hallazgos clave</div>
+    <div id="findingsList"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="bi bi-clipboard2-check-fill"></i> Calidad de los datos</div>
+    <p class="section-note" style="margin-top:-.4rem; margin-bottom:.8rem;">
+      % de registros marcados como <strong>"No registra"</strong> por campo — entre más bajo, mejor calidad de captura.
+    </p>
+    <div id="qualityList"></div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/reporte.js') }}"></script>
+{% endblock %}

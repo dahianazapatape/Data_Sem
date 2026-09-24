@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Añadir datos{% endblock %}
+{% block heading %}Añadir datos{% endblock %}
+{% block subheading %}Registra nuevos matriculados manualmente o carga un CSV — se suman al archivo y a todas las estadísticas{% endblock %}
+
+{% block content %}
+<div class="tabs-row">
+  <button class="tab-btn active" data-tab="manual">Registro manual</button>
+  <button class="tab-btn" data-tab="csv">Carga masiva (CSV)</button>
+</div>
+
+<div id="tabManual" class="card">
+  <div class="card-title"><i class="bi bi-person-plus-fill"></i> Nuevo matriculado</div>
+  <form id="formManual">
+    <div class="form-grid" id="formFields"></div>
+    <div style="margin-top:1.2rem; display:flex; gap:.7rem;">
+      <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle"></i> Guardar registro</button>
+      <button type="reset" class="btn btn-outline">Limpiar</button>
+    </div>
+  </form>
+  <p id="manualMsg" class="section-note" style="margin-top:.8rem;"></p>
+</div>
+
+<div id="tabCsv" class="card" style="display:none;">
+  <div class="card-title"><i class="bi bi-filetype-csv"></i> Cargar archivo CSV</div>
+  <p class="section-note" style="margin-bottom:1rem;">
+    El archivo debe tener las mismas columnas que <code>Matriculados_20260820.csv</code>
+    (Ano, Consecutivo, Barrio, Comuna, Ciudad Nacimiento, Pais Nacimiento, Id Estrato,
+    Ciudad Nacimiento 1, Nombre Programa, Sexo, Tipo Inscripcion, Sede, Facultad,
+    Area Conocimiento, Institucion, Colegio, Modalidad, Tipo Programa).
+  </p>
+  <label class="upload-drop" id="dropZone" for="csvInput">
+    <i class="bi bi-cloud-arrow-up-fill"></i>
+    <span id="dropText">Arrastra tu archivo CSV aquí o haz clic para seleccionarlo</span>
+    <input type="file" id="csvInput" accept=".csv" style="display:none;">
+  </label>
+  <div style="margin-top:1rem; display:flex; gap:.7rem; align-items:center;">
+    <button class="btn btn-primary" id="uploadBtn" disabled><i class="bi bi-upload"></i> Cargar registros</button>
+    <span id="csvMsg" class="section-note"></span>
+  </div>
+</div>
+
+<div class="card" style="margin-top:1.2rem;">
+  <div class="card-title"><i class="bi bi-arrow-repeat"></i> Mantenimiento de la base de datos</div>
+  <p class="section-note" style="margin-bottom:.8rem;">
+    Reconstruye la base de datos completa a partir del archivo CSV maestro. Útil si el archivo
+    fue editado por fuera de la aplicación.
+  </p>
+  <button class="btn btn-outline" id="rebuildBtn"><i class="bi bi-database-gear"></i> Reconstruir base de datos</button>
+  <span id="rebuildMsg" class="section-note" style="margin-left:.6rem;"></span>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/anadir_datos.js') }}"></script>
+{% endblock %}

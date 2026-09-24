@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Mapa de sedes{% endblock %}
+{% block heading %}Mapa interactivo de sedes{% endblock %}
+{% block subheading %}Ubicación geográfica y volumen de matriculados por sede{% endblock %}
+
+{% block content %}
+<div class="grid grid-2" style="grid-template-columns: 1fr 300px; align-items:start;">
+  <div class="card" style="padding:0; overflow:hidden;">
+    <div id="mapa-sedes"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="bi bi-signpost-split-fill"></i> Ranking de sedes</div>
+    <div id="rankingSedes" style="display:flex; flex-direction:column; gap:.55rem; max-height:520px; overflow-y:auto;"></div>
+  </div>
+</div>
+
+<p class="section-note" style="margin-top:1rem;">
+  <i class="bi bi-info-circle"></i>
+  Las sedes principales usan su ubicación real; las Unidades Educativas Municipales/Regionales (UEMR/UEMB)
+  se ubican en el municipio o zona correspondiente. La modalidad <strong>Virtual</strong> y los registros de
+  movilidad académica no tienen sede física y no se muestran en el mapa.
+</p>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/mapa.js') }}"></script>
+{% endblock %}

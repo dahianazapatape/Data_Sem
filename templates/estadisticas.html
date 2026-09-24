@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Estadísticas{% endblock %}
+{% block heading %}Estadísticas y gráficos{% endblock %}
+{% block subheading %}Explora la matrícula filtrando por facultad, sede, modalidad y más{% endblock %}
+
+{% block content %}
+<div class="filters-bar" id="filtersBar">
+  <select class="form-select" id="fFacultad"><option value="">Facultad (todas)</option></select>
+  <select class="form-select" id="fSede"><option value="">Sede (todas)</option></select>
+  <select class="form-select" id="fModalidad"><option value="">Modalidad (todas)</option></select>
+  <select class="form-select" id="fSexo"><option value="">Género (todos)</option></select>
+  <select class="form-select" id="fTipoPrograma"><option value="">Tipo de programa (todos)</option></select>
+  <select class="form-select" id="fEstrato"><option value="">Estrato (todos)</option></select>
+  <button class="btn btn-outline" id="clearFilters"><i class="bi bi-x-circle"></i> Limpiar</button>
+</div>
+
+<div class="card" style="margin-bottom:1.2rem;">
+  <div class="card-title"><i class="bi bi-sort-down"></i> Programas — Top y Bottom por matrícula</div>
+  <div class="tabs-row">
+    <button class="tab-btn active" data-topbottom="top">Top 10 (más matrícula)</button>
+    <button class="tab-btn" data-topbottom="bottom">Bottom 10 (menos matrícula)</button>
+  </div>
+  <div id="topBottomList"></div>
+</div>
+
+<div class="grid grid-2" style="margin-bottom:1.2rem;">
+  <div class="card">
+    <div class="card-title"><i class="bi bi-mortarboard-fill"></i> Programas con más matriculados (Top 10)</div>
+    <canvas id="chartProgramas" height="260"></canvas>
+  </div>
+  <div class="card">
+    <div class="card-title"><i class="bi bi-diagram-3-fill"></i> Género por facultad</div>
+    <canvas id="chartGeneroFacultad" height="260"></canvas>
+  </div>
+</div>
+
+<div class="grid grid-3">
+  <div class="card">
+    <div class="card-title"><i class="bi bi-signpost-2-fill"></i> Área de conocimiento</div>
+    <canvas id="chartArea" height="220"></canvas>
+  </div>
+  <div class="card">
+    <div class="card-title"><i class="bi bi-person-check-fill"></i> Tipo de inscripción</div>
+    <canvas id="chartInscripcion" height="220"></canvas>
+  </div>
+  <div class="card">
+    <div class="card-title"><i class="bi bi-building-fill"></i> Matriculados por sede (Top 8)</div>
+    <canvas id="chartSedeTop" height="220"></canvas>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/estadisticas.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Comparador de sedes{% endblock %}
+{% block heading %}Comparador de sedes{% endblock %}
+{% block subheading %}Contrasta programas, modalidades y matrícula entre dos sedes{% endblock %}
+
+{% block content %}
+<div class="filters-bar">
+  <select class="form-select" id="sedeA"><option value="">Sede A…</option></select>
+  <select class="form-select" id="sedeB"><option value="">Sede B…</option></select>
+  <button class="btn btn-primary" id="compararBtn"><i class="bi bi-arrow-left-right"></i> Comparar</button>
+</div>
+
+<div id="compareEmpty" class="card empty-state">
+  <i class="bi bi-signpost-split"></i>
+  Selecciona dos sedes distintas para ver su comparación.
+</div>
+
+<div id="compareResult" class="grid grid-2-even" style="display:none;">
+  <div class="card compare-col" id="colA"></div>
+  <div class="card compare-col" id="colB"></div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/comparador.js') }}"></script>
+{% endblock %}

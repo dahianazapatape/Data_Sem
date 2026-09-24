@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block heading %}Dashboard principal{% endblock %}
+{% block subheading %}Resumen general de matriculados — periodo 2026-1{% endblock %}
+
+{% block topbar_actions %}
+<button class="btn btn-outline" id="refreshBtn"><i class="bi bi-arrow-clockwise"></i> Actualizar</button>
+{% endblock %}
+
+{% block content %}
+<div class="grid grid-kpis" id="kpiGrid" style="margin-bottom:1.2rem;"></div>
+
+<div class="grid grid-2" style="margin-bottom:1.2rem;">
+  <div class="card">
+    <div class="card-title"><i class="bi bi-mortarboard-fill"></i> Matriculados por facultad</div>
+    <canvas id="chartFacultad" height="230"></canvas>
+  </div>
+  <div class="card">
+    <div class="card-title"><i class="bi bi-pie-chart-fill"></i> Distribución por género</div>
+    <canvas id="chartGenero" height="230"></canvas>
+  </div>
+</div>
+
+<div class="grid grid-3">
+  <div class="card">
+    <div class="card-title"><i class="bi bi-laptop"></i> Modalidad</div>
+    <canvas id="chartModalidad" height="200"></canvas>
+  </div>
+  <div class="card">
+    <div class="card-title"><i class="bi bi-building"></i> Top 5 sedes</div>
+    <canvas id="chartSedes" height="200"></canvas>
+  </div>
+  <div class="card">
+    <div class="card-title"><i class="bi bi-mortarboard"></i> Tipo de programa</div>
+    <canvas id="chartTipoPrograma" height="200"></canvas>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}
