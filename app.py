@@ -39,6 +39,11 @@ def create_app():
     return app
 
 
+if not os.path.exists(DB_PATH):
+    # También aplica al desplegar con gunicorn, donde no se ejecuta __main__.
+    print("No se encontró la base de datos. Construyéndola desde el CSV...")
+    build_database()
+
 app = create_app()
 
 
@@ -47,10 +52,6 @@ def _open_browser():
 
 
 if __name__ == "__main__":
-    if not os.path.exists(DB_PATH):
-        print("No se encontró la base de datos. Construyéndola desde el CSV...")
-        build_database()
-
     if os.environ.get("WERKZEUG_RUN_MAIN") != "true":
         threading.Timer(1.2, _open_browser).start()
 
