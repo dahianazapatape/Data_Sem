@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
 <link rel="stylesheet" href="{{ url_for('static', filename='vendor/leaflet/leaflet.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<script src="{{ url_for('static', filename='js/theme.js') }}"></script>
 </head>
 <body>
 
@@ -18,7 +19,7 @@
 <div class="app-shell">
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-brand">
-      <div class="logo-dot">ITM</div>
+      <div class="logo-dot">DI</div>
       <div>
         <div class="brand-title">{{ app_name }}</div>
         <div class="brand-sub">{{ app_subtitle }}</div>
@@ -65,7 +66,6 @@
     </nav>
 
     <div class="sidebar-footer">
-      Instituto Tecnológico Metropolitano (ITM)<br>
       Periodo 2026-1 · Datos reales de matrícula
     </div>
   </aside>

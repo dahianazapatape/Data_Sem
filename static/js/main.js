@@ -1,6 +1,8 @@
 // ============================================================
-// ITM Data — lógica común (sidebar móvil, tema, acento)
+// DataInsights — lógica común (sidebar móvil, tema, acento)
 // ============================================================
+
+initChartDefaults();
 
 const FA = {
   fmt(n) {
@@ -14,17 +16,22 @@ const FA = {
     if (!res.ok) throw new Error(`Error ${res.status} en ${url}`);
     return res.json();
   },
+  // Colores del tema activo (ver theme.js)
+  get theme() { return getTheme(); },
+  get palette() { return getTheme().palette; },
   qs(params) {
     const clean = Object.fromEntries(Object.entries(params).filter(([, v]) => v !== "" && v != null));
     return new URLSearchParams(clean).toString();
   },
 };
 
-function initTheme() {
-  const saved = localStorage.getItem("itm_theme") || "light";
-  document.documentElement.setAttribute("data-theme", saved);
-  const accent = localStorage.getItem("itm_accent");
-  if (accent) document.documentElement.style.setProperty("--kobi", accent);
+// Textos y cuadrícula de las gráficas acordes al modo claro/oscuro.
+function initChartDefaults() {
+  if (typeof Chart === "undefined") return;
+  const css = getComputedStyle(document.documentElement);
+  Chart.defaults.color = css.getPropertyValue("--ink-soft").trim();
+  Chart.defaults.borderColor = css.getPropertyValue("--border-soft").trim();
+  Chart.defaults.font.family = "'Inter', sans-serif";
 }
 
 function initSidebar() {
@@ -41,6 +48,5 @@ function initSidebar() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  initTheme();
   initSidebar();
 });

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Configuración central del proyecto.
-Aquí viven las rutas de archivos, la paleta de colores institucional
+Aquí viven las rutas de archivos, la paleta de colores
 y el diccionario de coordenadas geográficas de las sedes, usado por
 el módulo de Mapa Interactivo.
 """
@@ -11,8 +11,8 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_CSV = os.path.join(BASE_DIR, "data", "Matriculados_20260820.csv")
 DB_PATH = os.path.join(BASE_DIR, "database", "matriculados.db")
 
-APP_NAME = "ITM Data"
-APP_SUBTITLE = "Panel de Matriculados 2026-1 · Instituto Tecnológico Metropolitano"
+APP_NAME = "DataInsights"
+APP_SUBTITLE = "Panel de Matriculados 2026-1"
 
 HOST = "127.0.0.1"
 PORT = 5050
@@ -27,9 +27,8 @@ PALETTE = {
 }
 
 # Coordenadas aproximadas (lat, lon) de las sedes y Unidades Educativas
-# Municipales/Regionales (UEMB / UEMR) del Instituto Tecnológico Metropolitano
-# (ITM). Los valores de las sedes principales de Medellín (Robledo,
-# Fraternidad, Castilla, La Floresta) se basan en su ubicación real
+# Municipales/Regionales (UEMB / UEMR). Los valores de las sedes
+# principales de Medellín (Robledo, Fraternidad, Castilla, La Floresta) se basan en su ubicación real
 # conocida; las sedes regionales usan el centro urbano aproximado del
 # municipio correspondiente (uso académico / demostrativo).
 SEDE_COORDS = {

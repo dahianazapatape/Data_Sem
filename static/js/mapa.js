@@ -34,9 +34,9 @@ async function loadMapa() {
   sedes.forEach(s => {
     const marker = L.circleMarker([s.lat, s.lon], {
       radius: radiusFor(s.total, max),
-      color: "#0F3B3A",
+      color: FA.theme.sidebar[0],
       weight: 1,
-      fillColor: s.total > max * 0.3 ? "#E76F51" : "#36C9C6",
+      fillColor: s.total > max * 0.3 ? FA.theme.secondary : FA.theme.primary,
       fillOpacity: 0.65,
     }).addTo(map);
 

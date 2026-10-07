@@ -44,6 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
   loadReport();
   loadQuality();
   document.getElementById("pdfBtn").addEventListener("click", () => {
-    window.location.href = "/api/reporte/pdf";
+    window.location.href = `/api/reporte/pdf?${FA.qs({ color: FA.theme.primary.slice(1) })}`;
   });
 });

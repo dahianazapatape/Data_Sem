@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-ITM Data — Panel interactivo de matriculados del ITM.
+DataInsights — Panel interactivo de matriculados.
 
 Ejecutar con:
     python app.py
@@ -55,6 +55,6 @@ if __name__ == "__main__":
     if os.environ.get("WERKZEUG_RUN_MAIN") != "true":
         threading.Timer(1.2, _open_browser).start()
 
-    print(f"\n ITM Data disponible en: http://{HOST}:{PORT}/\n")
+    print(f"\n DataInsights disponible en: http://{HOST}:{PORT}/\n")
     debug_mode = os.environ.get("ITM_DEBUG", "true").lower() == "true"
     app.run(host=HOST, port=PORT, debug=debug_mode)

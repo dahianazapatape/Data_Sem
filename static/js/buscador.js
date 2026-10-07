@@ -36,10 +36,8 @@ async function populateFilters() {
 }
 
 function genderBadge(sexo) {
-  const color = sexo === "Femenino" ? "background:rgba(231,111,81,.15); color:#b8492c;"
-    : sexo === "Masculino" ? "background:rgba(54,201,198,.15); color:#0d7a78;"
-    : "background:rgba(155,193,188,.25); color:#3f6b65;";
-  return `<span class="badge-pill" style="${color}">${sexo}</span>`;
+  const cls = sexo === "Femenino" ? "bg-terra" : sexo === "Masculino" ? "bg-kobi" : "bg-opal";
+  return `<span class="badge-pill ${cls}">${sexo}</span>`;
 }
 
 async function runSearch(page = 1) {

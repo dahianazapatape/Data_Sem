@@ -1,7 +1,7 @@
 // ============================================================
 // Estadísticas y gráficos — con filtros dinámicos
 // ============================================================
-const PSET = ["#36C9C6", "#E76F51", "#9BC1BC", "#F4C77B", "#6C8EBF", "#B08BBB", "#E6BEAE", "#8FD6C4", "#D68C45", "#7B9E89"];
+const PSET = FA.palette;
 const charts = {};
 
 function destroy(id) {
@@ -70,7 +70,7 @@ async function drawProgramas() {
     type: "bar",
     data: {
       labels: data.map(d => d.label.length > 28 ? d.label.slice(0, 28) + "…" : d.label),
-      datasets: [{ data: data.map(d => d.total), backgroundColor: "#36C9C6", borderRadius: 6 }],
+      datasets: [{ data: data.map(d => d.total), backgroundColor: FA.theme.primary, borderRadius: 6 }],
     },
     options: { indexAxis: "y", plugins: { legend: { display: false } } },
   });
@@ -81,7 +81,7 @@ async function drawGeneroFacultad() {
   const data = await FA.getJSON(`/api/charts/cruce/facultad/sexo?${qs}`);
   const facultades = [...new Set(data.map(d => d.grp))];
   const generos = [...new Set(data.map(d => d.stack))];
-  const colors = { Femenino: "#E76F51", Masculino: "#36C9C6", "No registra": "#9BC1BC" };
+  const colors = { Femenino: FA.theme.secondary, Masculino: FA.theme.primary, "No registra": FA.theme.tertiary };
   destroy("generoFacultad");
   charts.generoFacultad = new Chart(document.getElementById("chartGeneroFacultad"), {
     type: "bar",
@@ -90,7 +90,7 @@ async function drawGeneroFacultad() {
       datasets: generos.map(g => ({
         label: g,
         data: facultades.map(f => (data.find(d => d.grp === f && d.stack === g) || {}).total || 0),
-        backgroundColor: colors[g] || "#B08BBB",
+        backgroundColor: colors[g] || FA.palette[5],
         borderRadius: 4,
       })),
     },

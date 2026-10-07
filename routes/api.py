@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import csv
 import io
+import re
 
 from flask import Blueprint, Response, jsonify, request, send_file
 
@@ -201,14 +202,18 @@ def reporte_pdf():
     from reportlab.platypus import (Paragraph, SimpleDocTemplate, Spacer,
                                      Table, TableStyle)
 
+    # Color del tema activo en la interfaz (hex sin '#'); por defecto turquesa.
+    color = request.args.get("color", "")
+    header_color = f"#{color}" if re.fullmatch(r"[0-9A-Fa-f]{6}", color) else "#36C9C6"
+
     data = q.get_report_findings()
     kpis = data["kpis"]
     buf = io.BytesIO()
     doc = SimpleDocTemplate(buf, pagesize=letter, topMargin=2 * cm, bottomMargin=2 * cm)
     styles = getSampleStyleSheet()
     story = [
-        Paragraph("Reporte Ejecutivo — ITM Data", styles["Title"]),
-        Paragraph("Instituto Tecnológico Metropolitano · Periodo 2026-1", styles["Normal"]),
+        Paragraph("Reporte Ejecutivo — DataInsights", styles["Title"]),
+        Paragraph("Periodo 2026-1", styles["Normal"]),
         Spacer(1, 16),
         Paragraph("Indicadores generales", styles["Heading2"]),
     ]
@@ -222,7 +227,7 @@ def reporte_pdf():
     ]
     t = Table(tabla_kpis, colWidths=[9 * cm, 6 * cm])
     t.setStyle(TableStyle([
-        ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#36C9C6")),
+        ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor(header_color)),
         ("GRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#DCE3DA")),
         ("FONTSIZE", (0, 0), (-1, -1), 10),
         ("BOTTOMPADDING", (0, 0), (-1, -1), 6),

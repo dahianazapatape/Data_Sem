@@ -55,8 +55,8 @@ async function comparar() {
     return;
   }
   const data = await FA.getJSON(`/api/comparar-sedes?${FA.qs({ sede_a: sedeA, sede_b: sedeB })}`);
-  document.getElementById("colA").innerHTML = renderCol(data.a, "#36C9C6");
-  document.getElementById("colB").innerHTML = renderCol(data.b, "#E76F51");
+  document.getElementById("colA").innerHTML = renderCol(data.a, FA.theme.primary);
+  document.getElementById("colB").innerHTML = renderCol(data.b, FA.theme.secondary);
   document.getElementById("compareEmpty").style.display = "none";
   document.getElementById("compareResult").style.display = "grid";
 }

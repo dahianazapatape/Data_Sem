@@ -1,8 +1,7 @@
-# ITM Data — Panel Interactivo de Matriculados 2026-1
+# DataInsights — Panel Interactivo de Matriculados 2026-1
 
 Aplicación web interactiva (Python + Flask + SQLite + Chart.js + Leaflet)
-para explorar los datos reales de matrícula del Instituto Tecnológico
-Metropolitano (ITM). Al ejecutarse, levanta un servidor local y abre automáticamente
+para explorar los datos reales de matrícula. Al ejecutarse, levanta un servidor local y abre automáticamente
 la interfaz en el navegador.
 
 ## Módulos incluidos

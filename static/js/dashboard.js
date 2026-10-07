@@ -1,7 +1,7 @@
 // ============================================================
 // Dashboard principal
 // ============================================================
-const PALETTE_SET = ["#36C9C6", "#E76F51", "#9BC1BC", "#F4C77B", "#6C8EBF", "#B08BBB", "#E6BEAE"];
+const PALETTE_SET = FA.palette;
 
 function kpiCard({ icon, bg, value, label }) {
   return `
@@ -55,7 +55,7 @@ async function loadGeneroChart() {
     type: "doughnut",
     data: {
       labels: data.map(d => d.label),
-      datasets: [{ data: data.map(d => d.total), backgroundColor: ["#36C9C6", "#E76F51", "#9BC1BC"], borderWidth: 0 }],
+      datasets: [{ data: data.map(d => d.total), backgroundColor: [FA.theme.primary, FA.theme.secondary, FA.theme.tertiary], borderWidth: 0 }],
     },
     options: { plugins: { legend: { position: "bottom", labels: { boxWidth: 10, font: { size: 11 } } } }, cutout: "62%" },
   });
@@ -79,7 +79,7 @@ async function loadSedesChart() {
     type: "bar",
     data: {
       labels: data.map(d => d.label.length > 14 ? d.label.slice(0, 14) + "…" : d.label),
-      datasets: [{ data: data.map(d => d.total), backgroundColor: "#36C9C6", borderRadius: 8, maxBarThickness: 34 }],
+      datasets: [{ data: data.map(d => d.total), backgroundColor: FA.theme.primary, borderRadius: 8, maxBarThickness: 34 }],
     },
     options: baseBarOptions(false),
   });
@@ -91,7 +91,7 @@ async function loadTipoProgramaChart() {
     type: "doughnut",
     data: {
       labels: data.map(d => d.label),
-      datasets: [{ data: data.map(d => d.total), backgroundColor: ["#E76F51", "#36C9C6"], borderWidth: 0 }],
+      datasets: [{ data: data.map(d => d.total), backgroundColor: [FA.theme.secondary, FA.theme.primary], borderWidth: 0 }],
     },
     options: { plugins: { legend: { position: "bottom", labels: { boxWidth: 10, font: { size: 11 } } } }, cutout: "62%" },
   });

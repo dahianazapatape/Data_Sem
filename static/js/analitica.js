@@ -2,7 +2,7 @@
 // Analítica avanzada: estrato, geografía, colegios, equidad de género
 // ============================================================
 
-const COVERAGE_COLORS = ["#36C9C6", "#E76F51", "#9BC1BC", "#F4C77B", "#6C8EBF", "#B08BBB"];
+const COVERAGE_COLORS = FA.palette;
 
 function progressRow(label, pct, total, color) {
   return `
@@ -36,7 +36,7 @@ async function drawEstrato() {
     type: "bar",
     data: {
       labels,
-      datasets: [{ data: data.map(d => d.total), backgroundColor: "#9BC1BC", borderRadius: 8, maxBarThickness: 46 }],
+      datasets: [{ data: data.map(d => d.total), backgroundColor: FA.theme.tertiary, borderRadius: 8, maxBarThickness: 46 }],
     },
     options: { plugins: { legend: { display: false } } },
   });
@@ -48,7 +48,7 @@ async function drawComuna() {
     type: "bar",
     data: {
       labels: data.map(d => d.label),
-      datasets: [{ data: data.map(d => d.total), backgroundColor: "#36C9C6", borderRadius: 8, maxBarThickness: 30 }],
+      datasets: [{ data: data.map(d => d.total), backgroundColor: FA.theme.primary, borderRadius: 8, maxBarThickness: 30 }],
     },
     options: { indexAxis: "y", plugins: { legend: { display: false } } },
   });
@@ -60,7 +60,7 @@ async function drawColegios() {
     type: "bar",
     data: {
       labels: data.map(d => d.label.length > 32 ? d.label.slice(0, 32) + "…" : d.label),
-      datasets: [{ data: data.map(d => d.total), backgroundColor: "#E76F51", borderRadius: 6 }],
+      datasets: [{ data: data.map(d => d.total), backgroundColor: FA.theme.secondary, borderRadius: 6 }],
     },
     options: { indexAxis: "y", plugins: { legend: { display: false } } },
   });
@@ -90,8 +90,8 @@ async function drawEquidad() {
           <span style="color:var(--ink-soft);">${pctFem}% mujeres</span>
         </div>
         <div style="height:10px; border-radius:999px; background:var(--alabaster); overflow:hidden; display:flex;">
-          <div style="width:${pctFem}%; background:#E76F51;"></div>
-          <div style="width:${100 - pctFem}%; background:#36C9C6;"></div>
+          <div style="width:${pctFem}%; background:${FA.theme.secondary};"></div>
+          <div style="width:${100 - pctFem}%; background:${FA.theme.primary};"></div>
         </div>
       </div>`;
   }).join("");

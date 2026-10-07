@@ -21,15 +21,13 @@
 
     <div class="theme-switch-row" style="flex-direction:column; align-items:flex-start; gap:.6rem;">
       <div>
-        <div style="font-weight:600; font-size:.9rem;">Color de acento</div>
-        <div class="section-note" style="margin:0;">Color primario de botones y gráficos</div>
+        <div style="font-weight:600; font-size:.9rem;">Tema de color</div>
+        <div class="section-note" style="margin:0;">Cambia los botones, el panel lateral, el mapa y los colores de todas las gráficas</div>
       </div>
-      <div class="swatch-row" id="swatchRow">
-        <div class="swatch" data-color="#36C9C6" style="background:#36C9C6;"></div>
-        <div class="swatch" data-color="#E76F51" style="background:#E76F51;"></div>
-        <div class="swatch" data-color="#9BC1BC" style="background:#9BC1BC;"></div>
-        <div class="swatch" data-color="#6C8EBF" style="background:#6C8EBF;"></div>
-        <div class="swatch" data-color="#B08BBB" style="background:#B08BBB;"></div>
+      <div class="theme-grid" id="themeGrid"></div>
+      <div class="theme-preview">
+        <div class="section-note" style="margin:0 0 .4rem;">Vista previa</div>
+        <canvas id="themePreviewChart" height="140"></canvas>
       </div>
     </div>
   </div>
@@ -40,7 +38,6 @@
       <div><strong style="color:var(--ink);">Proyecto:</strong> {{ app_name }}</div>
       <div><strong style="color:var(--ink);">Periodo analizado:</strong> 2026-1</div>
       <div><strong style="color:var(--ink);">Fuente de datos:</strong> Matriculados_20260820.csv</div>
-      <div><strong style="color:var(--ink);">Institución:</strong> Instituto Tecnológico Metropolitano (ITM)</div>
       <div><strong style="color:var(--ink);">Stack:</strong> Python · Flask · SQLite · Chart.js · Leaflet</div>
     </div>
 
