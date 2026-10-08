@@ -119,7 +119,6 @@ async function reloadAll() {
     drawProgramas(),
     drawGeneroFacultad(),
     drawSimple("area", "chartArea", "area_conocimiento", "doughnut"),
-    drawSimple("inscripcion", "chartInscripcion", "tipo_inscripcion", "pie"),
     drawSimple("sedeTop", "chartSedeTop", "sede", "bar", { limit: 8 }),
     drawTopBottomList(),
   ]);
